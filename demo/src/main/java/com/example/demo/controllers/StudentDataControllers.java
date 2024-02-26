@@ -1,4 +1,4 @@
-package com.example.demo.repository;
+package com.example.demo.controllers;
 import com.example.demo.model.StudentDataModel;
 import org.springframework.stereotype.Component;
 
@@ -8,10 +8,10 @@ import java.util.List;
 import java.util.ArrayList;
 
 @Component
-public class StudentDataRepository {
+public class StudentDataControllers {
     private Map<String, StudentDataModel> studentDataMap;
 
-    public StudentDataRepository() {
+    public StudentDataControllers() {
         studentDataMap = new HashMap<>();
     }
 
