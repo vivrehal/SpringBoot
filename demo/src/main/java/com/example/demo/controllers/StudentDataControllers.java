@@ -1,32 +1,47 @@
 package com.example.demo.controllers;
-import com.example.demo.model.StudentDataModel;
-import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
-import java.util.Map;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Map;
+import java.util.UUID;
 
-@Component
+import com.example.demo.model.StudentDataModel;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequestMapping("/students")
 public class StudentDataControllers {
-    private Map<String, StudentDataModel> studentDataMap;
-
-    public StudentDataControllers() {
-        studentDataMap = new HashMap<>();
-    }
-
-    public StudentDataModel getStudentById(final String id) {
-        return studentDataMap.getOrDefault(id, null);
-    }
-
-    public List<StudentDataModel> getAllStudents() {
-        return new ArrayList<>(studentDataMap.values());
-    }
-
-
-    public String createStudent(final String id, final String name, final int age, final String aadhar, final String university) {
-        StudentDataModel newStudentDataModel = new StudentDataModel(id, name, age, aadhar, university);
-        studentDataMap.put(id, newStudentDataModel);
+    
+    private Map<String, Student> studentMap = new HashMap<>();
+    
+    @PostMapping("/create")
+    public String createStudent(@RequestBody Student student) {
+        String id = generateId();
+        student.setId(id);
+        studentMap.put(id, student);
         return id;
     }
+    
+    @GetMapping("/find/{id}")
+    public Student findStudentById(@PathVariable String id) {
+        return studentMap.getOrDefault(id, null);
+    }
+    
+    @GetMapping("/all")
+    public List<Student> getAllStudents() {
+        return new ArrayList<>(studentMap.values());
+    }
+    
+    private String generateId() {
+        UUID uuid = UUID.randomUUID();
+        return uuid.toString();
+    }
 }
+
+
