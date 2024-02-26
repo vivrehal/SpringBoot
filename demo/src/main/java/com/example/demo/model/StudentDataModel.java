@@ -9,7 +9,7 @@ import lombok.Setter;
 public class StudentDataModel {
     public String id;
     public String name;
-    public String age;
+    public int age;
     public String aadhar;
     public String university;
 
