@@ -8,7 +8,6 @@ import java.util.UUID;
 
 import com.example.demo.model.Student;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,8 +20,13 @@ public class StudentDataControllers {
     private Map<String, Student> studentMap = new HashMap<>();
     
     @PostMapping("/create")
-    public String createStudent(@RequestBody Student student) {
+    public String createStudent(@RequestBody String name, @RequestBody int age, @RequestBody String aadhar, @RequestBody String university) {
         String id = generateId();
+        Student student = new Student();
+        student.setName(name);
+        student.setAge(age);
+        student.setAadhar(aadhar);
+        student.setUniversity(university);
         student.setId(id);
         studentMap.put(id, student);
         return id;
