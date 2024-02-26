@@ -4,15 +4,12 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
-
-class Student {
+public class Student {
     private String id;
     private String name;
     private int age;
     private String aadhar;
     private String university;
-    
-    // Getters and setters
     
     public String getId() {
         return id;
