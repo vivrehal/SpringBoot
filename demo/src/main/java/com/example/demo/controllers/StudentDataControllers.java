@@ -20,13 +20,8 @@ public class StudentDataControllers {
     private Map<String, Student> studentMap = new HashMap<>();
     
     @PostMapping("/create")
-    public String createStudent(@RequestBody String name, @RequestBody int age, @RequestBody String aadhar, @RequestBody String university) {
+    public String createStudent(@RequestBody Student student) {
         String id = generateId();
-        Student student = new Student();
-        student.setName(name);
-        student.setAge(age);
-        student.setAadhar(aadhar);
-        student.setUniversity(university);
         student.setId(id);
         studentMap.put(id, student);
         return id;
