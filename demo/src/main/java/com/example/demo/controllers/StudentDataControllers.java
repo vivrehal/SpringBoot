@@ -27,7 +27,7 @@ public class StudentDataControllers {
         return id;
     }
     
-    @GetMapping("/find")
+    @PostMapping("/find")
     public Student findStudentById(@RequestBody String id) {
         return studentMap.getOrDefault(id, null);
     }
